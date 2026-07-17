@@ -1,39 +1,5 @@
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
   background: #f2f2f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-form {
-  background: rgb(13, 11, 11);
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
-h1 {
-  text-align: center;
-}
-
-input {
-  width: 250px;
-  padding: 10px;
-  margin: 8px 0;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  background: rgb(88, 88, 225);
-  color: rgb(15, 13, 13);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: darkblue;
 }

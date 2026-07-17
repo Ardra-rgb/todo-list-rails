@@ -1,0 +1,29 @@
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-form {
+  background: rgb(13, 11, 11);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.register-form label {
+  color: white;
+}
+
+.register-form input {
+  width: 250px;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+.register-form input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+}

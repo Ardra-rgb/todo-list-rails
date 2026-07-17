@@ -1,16 +1,22 @@
-<form method="post">
+<div class="register-page">
 
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= form_with url: "/register/signup",
+                method: :post,
+                class: "register-form" do |f| %>
 
-  <label>Name</label><br>
-  <input type="text" name="name" placeholder="Enter your name"><br><br>
+    <label>Name</label><br>
+    <%= f.text_field :name, placeholder: "Enter your name" %><br><br>
 
-  <label>Email</label><br>
-  <input type="email" name="email" placeholder="Enter your email"><br><br>
+    <label>Email</label><br>
+    <%= f.email_field :email, placeholder: "Enter your email" %><br><br>
 
-  <label>Password</label><br>
-  <input type="password" name="password" placeholder="Enter your password"><br><br>
+    <label>Password</label><br>
+    <%= f.password_field :password, placeholder: "Enter your password" %><br><br>
 
-  <button type="submit">Register</button>
+    <%= f.submit "Register" %><br><br>
 
-</form>
+    <%= link_to "Already have an account? Login", "/home/login" %>
+
+  <% end %>
+
+</div>

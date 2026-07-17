@@ -1,0 +1,29 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  background: rgb(13, 11, 11);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-form label {
+  color: white;
+}
+
+.login-form input {
+  width: 250px;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+.login-form input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+}

@@ -1,41 +1,58 @@
 <nav class="navbar">
-    <h2 class="title">📝 My To-Do List</h2>
+  <h2 class="title">📝 My To-Do List</h2>
 </nav>
 
 <div class="dashboard">
 
-    <p class="progress">
-        Today's Progress: <strong>2/5 Tasks Completed</strong>
-    </p>
+  <p class="progress">
+    Today's Progress
+  </p>
 
-    <div class="task-card">
-
-    <div class="task">✔ Study Ruby</div>
-
-    <div class="task">✔ Workout</div>
-
-    <div class="task">□ Complete Internship Task</div>
-
-    <div class="task">□ Buy Groceries</div>
+  <div class="task-card">
 
     <% @tasks.each do |task| %>
 
       <div class="task">
-        □ <%= task.title %>
+
+        <div class="task-left">
+
+          <%= button_to(task.completed ? "☑" : "☐",
+                        toggle_task_path(task),
+                        method: :patch,
+                        class: "checkbox-btn") %>
+
+          <div class="task-info">
+  <span class="task-title"
+        onclick="this.nextElementSibling.classList.toggle('show')">
+    <%= task.title %>
+  </span>
+
+  <div class="task-description">
+    <%= task.description %>
+  </div>
+</div>
+
+        </div>
+
+        <%= button_to "Delete",
+                      task_path(task),
+                      method: :delete,
+                      class: "delete-btn" %>
+
       </div>
 
     <% end %>
 
-</div>
+  </div>
 
-    </div>
-
-    <%= link_to "+ Add Task", "/tasks/new", class: "add-btn" %>
+  <%= link_to "+ Add Task", "/tasks/new", class: "add-btn" %>
 
 </div>
 
 <div class="bottom-bar">
-    <span class="username">Ardra</span>
 
-    <%= link_to "Logout", "/logout", class: "logout-btn" %>
+  <span class="username">Ardra</span>
+
+  <%= link_to "Logout", "/logout", class: "logout-btn" %>
+
 </div>

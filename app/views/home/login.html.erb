@@ -1,14 +1,18 @@
-<%= form_with url: "/login", method: :post do |f| %>
+<div class="login-page">
 
-  <label>Email</label><br>
-  <%= f.email_field :email, placeholder: "Enter your email" %><br><br>
+  <%= form_with url: "/login", method: :post, class: "login-form" do |f| %>
 
-  <label>Password</label><br>
-  <%= f.password_field :password, placeholder: "Enter your password" %><br><br>
+    <label>Email</label><br>
+    <%= f.email_field :email, placeholder: "Enter your email" %><br><br>
 
-  <%= f.submit "Login" %><br><br>
+    <label>Password</label><br>
+    <%= f.password_field :password, placeholder: "Enter your password" %><br><br>
 
-  <%= link_to "Forgot Password?", "#" %><br>
-  <%= link_to "Create Account", "/register/signup" %>
+    <%= f.submit "Login" %><br><br>
 
-<% end %>
+    <%= link_to "Forgot Password?", "#" %><br>
+    <%= link_to "Create Account", "/register/signup" %>
+
+  <% end %>
+
+</div>

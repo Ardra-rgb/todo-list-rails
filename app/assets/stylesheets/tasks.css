@@ -1,0 +1,28 @@
+.new-task-page {
+  text-align: center;
+  padding-top: 30px;
+}
+
+.new-task-form {
+  background: rgb(13, 11, 11);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  margin: 20px auto;
+}
+
+.new-task-form label {
+  color: white;
+}
+
+.new-task-form input,
+.new-task-form textarea {
+  width: 250px;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+.new-task-form input[type="submit"] {
+  cursor: pointer;
+}

@@ -1,11 +1,23 @@
 class TasksController < ApplicationController
 
   def new
+    @task = Task.new
   end
 
   def create
-    # render plain: params.inspect
-    redirect_to '/dashboard/index'
+    @task = Task.new(task_params)
+
+    if @task.save
+      redirect_to "/dashboard/index"
+    else
+      render :new
+    end
   end
 
-end 
+  private
+
+  def task_params
+    params.require(:task).permit(:title, :description)
+  end
+
+end

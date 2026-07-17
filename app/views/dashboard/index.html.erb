@@ -1,0 +1,41 @@
+<nav class="navbar">
+    <h2 class="title">📝 My To-Do List</h2>
+</nav>
+
+<div class="dashboard">
+
+    <p class="progress">
+        Today's Progress: <strong>2/5 Tasks Completed</strong>
+    </p>
+
+    <div class="task-card">
+
+    <div class="task">✔ Study Ruby</div>
+
+    <div class="task">✔ Workout</div>
+
+    <div class="task">□ Complete Internship Task</div>
+
+    <div class="task">□ Buy Groceries</div>
+
+    <% @tasks.each do |task| %>
+
+      <div class="task">
+        □ <%= task.title %>
+      </div>
+
+    <% end %>
+
+</div>
+
+    </div>
+
+    <%= link_to "+ Add Task", "/tasks/new", class: "add-btn" %>
+
+</div>
+
+<div class="bottom-bar">
+    <span class="username">Ardra</span>
+
+    <%= link_to "Logout", "/logout", class: "logout-btn" %>
+</div>

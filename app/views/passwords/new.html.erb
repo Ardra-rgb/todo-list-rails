@@ -1,0 +1,31 @@
+<div class="forgot-page">
+
+  <div class="forgot-card">
+
+    <h1>Forgot your password</h1>
+
+    <p class="forgot-text">
+      Please enter the email address you'd like your password reset information sent to
+    </p>
+
+    <%= form_with url: "/reset_password",
+                  method: :post,
+                  class: "forgot-form" do |f| %>
+
+      <div class="form-group">
+        <%= f.label :email, "Enter email address" %>
+
+        <%= f.email_field :email,
+                          placeholder: "Enter your email address",
+                          required: true %>
+      </div>
+
+      <%= f.submit "Request reset link", class: "reset-btn" %>
+
+    <% end %>
+
+    <%= link_to "Back To Login", "/home/login", class: "back-login" %>
+
+  </div>
+
+</div>

@@ -34,10 +34,18 @@
 
         </div>
 
-        <%= button_to "Delete",
-                      task_path(task),
-                      method: :delete,
-                      class: "delete-btn" %>
+        <div class="task-actions">
+
+  <%= link_to "Edit",
+              edit_task_path(task),
+              class: "edit-btn" %>
+
+  <%= button_to "Delete",
+                task_path(task),
+                method: :delete,
+                class: "delete-btn" %>
+
+</div>
 
       </div>
 

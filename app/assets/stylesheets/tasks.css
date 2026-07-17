@@ -26,3 +26,103 @@
 .new-task-form input[type="submit"] {
   cursor: pointer;
 }
+
+
+/* Edit Task Page */
+
+.edit-task-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f4f4f4;
+}
+
+.edit-task-card {
+    background: white;
+    width: 450px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.edit-task-card h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.edit-subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.edit-task-form .form-group {
+    margin-bottom: 20px;
+}
+
+.edit-task-form label {
+    display: block;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+.edit-input,
+.edit-description {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 16px;
+}
+
+.edit-description {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.edit-input:focus,
+.edit-description:focus {
+    outline: none;
+    border: 2px solid #3f51b5;
+}
+
+.edit-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.save-changes-btn {
+    flex: 1;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 7px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.save-changes-btn:hover {
+    background: #388E3C;
+}
+
+.cancel-btn {
+    flex: 1;
+    background: #777;
+    color: white;
+    padding: 12px;
+    border-radius: 7px;
+    text-decoration: none;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.cancel-btn:hover {
+    background: #555;
+}

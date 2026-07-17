@@ -16,8 +16,10 @@ Rails.application.routes.draw do
   
   get "logout", to: "login#logout"
   get "forgot_password", to: "passwords#new"
-  
+
   get "up" => "rails/health#show", as: :rails_health_check
   delete "tasks/:id", to: "tasks#destroy", as: :task
   patch "tasks/:id/toggle", to: "tasks#toggle", as: :toggle_task
+  get "tasks/:id/edit", to: "tasks#edit", as: :edit_task
+  patch "tasks/:id", to: "tasks#update"
 end

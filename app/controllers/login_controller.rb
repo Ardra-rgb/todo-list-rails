@@ -11,13 +11,14 @@ class LoginController < ApplicationController
       elsif user.password != params[:password]
         render plain: "Invalid Password"
       else
+        session[:user_id] = user.id
         redirect_to "/dashboard/index"
       end
     end
   end
 
   def logout
-    redirect_to "/home/login"
-  end
-
+  session[:user_id] = nil
+  redirect_to "/home/login"
+end
 end

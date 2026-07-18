@@ -4,9 +4,19 @@
 
 <div class="dashboard">
 
+  <div class="dashboard-header">
+
   <p class="progress">
     Today's Progress
   </p>
+
+  <%= button_to "Clear All Tasks",
+                destroy_all_tasks_path,
+                method: :delete,
+                class: "clear-all-btn",
+                data: { turbo_confirm: "Are you sure you want to delete all tasks?" } %>
+
+</div>
 
   <div class="task-card">
 
@@ -51,9 +61,11 @@
 
     <% end %>
 
-  </div>
+    </div>
 
-  <%= link_to "+ Add Task", "/tasks/new", class: "add-btn" %>
+  <%= link_to "+ Add Task",
+              "/tasks/new",
+              class: "add-btn" %>
 
 </div>
 

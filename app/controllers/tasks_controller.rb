@@ -41,16 +41,16 @@ def update
     render :edit
   end
 end
+
+def destroy_all
+  Task.destroy_all
+  redirect_to "/dashboard/index"
+end
+
 private
 
 def task_params
   params.require(:task).permit(:title, :description)
 end
-
-  private
-
-  def task_params
-    params.require(:task).permit(:title, :description)
-  end
 
 end

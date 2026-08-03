@@ -1,22 +1,49 @@
+<% if flash[:success] %>
+  <div id="toast" class="toast-success">
+    <%= flash[:success] %>
+  </div>
+<% end %>
 <nav class="navbar">
+
   <h2 class="title">📝 My To-Do List</h2>
+
+  <div class="nav-right">
+    <span class="username"><%= current_user.name %></span>
+
+    <%= link_to "Logout", "/logout", class: "logout-btn" %>
+  </div>
+
 </nav>
 
 <div class="dashboard">
 
+  <% total_tasks = @tasks.count %>
+  <% completed_tasks = @tasks.where(completed: true).count %>
+  <% progress = total_tasks.zero? ? 0 : (completed_tasks * 100 / total_tasks) %>
+
   <div class="dashboard-header">
 
-  <p class="progress">
-    Today's Progress
-  </p>
+    <div class="progress-section">
 
-  <%= button_to "Clear All Tasks",
-                destroy_all_tasks_path,
-                method: :delete,
-                class: "clear-all-btn",
-                data: { turbo_confirm: "Are you sure you want to delete all tasks?" } %>
+      <div class="progress-text">
+        <span>Total Tasks: <%= total_tasks %></span>
+        <span>Completed: <%= completed_tasks %></span>
+      </div>
 
-</div>
+      <div class="progress-bar">
+        <div class="progress-fill"
+             style="width: <%= progress %>%;">
+        </div>
+      </div>
+
+    </div>
+
+<%= button_to "Clear All Tasks",
+              destroy_all_tasks_path,
+              method: :delete,
+              class: "clear-all-btn clear-all-confirm" %>
+
+  </div>
 
   <div class="task-card">
 
@@ -32,36 +59,37 @@
                         class: "checkbox-btn") %>
 
           <div class="task-info">
-  <span class="task-title"
-        onclick="this.nextElementSibling.classList.toggle('show')">
-    <%= task.title %>
-  </span>
 
-  <div class="task-description">
-    <%= task.description %>
-  </div>
-</div>
+            <span class="task-title"
+                  onclick="this.nextElementSibling.classList.toggle('show')">
+              <%= task.title %>
+            </span>
+
+            <div class="task-description">
+              <%= task.description %>
+            </div>
+
+          </div>
 
         </div>
 
         <div class="task-actions">
 
-  <%= link_to "Edit",
-              edit_task_path(task),
-              class: "edit-btn" %>
+          <%= link_to "Edit",
+                      edit_task_path(task),
+                      class: "edit-btn" %>
 
-  <%= button_to "Delete",
-                task_path(task),
-                method: :delete,
-                class: "delete-btn" %>
-
-</div>
+          <%= link_to "Delete",
+            "#",
+            class: "delete-btn delete-task-btn",
+            data: { task_id: task.id } %>
+        </div>
 
       </div>
 
     <% end %>
 
-    </div>
+  </div>
 
   <%= link_to "+ Add Task",
               "/tasks/new",
@@ -69,10 +97,110 @@
 
 </div>
 
-<div class="bottom-bar">
 
-  <span class="username"><%= current_user.name %></span>
 
-  <%= link_to "Logout", "/logout", class: "logout-btn" %>
+<div id="deleteModal" class="modal">
+
+  <div class="modal-content">
+
+    <h2>⚠ Delete Task</h2>
+
+    <p id="modalMessage">
+      Are you sure you want to permanently delete this task?
+    </p>
+    <div class="modal-buttons">
+
+      <button type="button" id="cancelDelete" class="cancel-btn">
+        Cancel
+      </button>
+
+      <button
+        type="button"
+        id="confirmDelete"
+        class="confirm-delete-btn">
+        Delete Permanently
+      </button>
+
+    </div>
+
+  </div>
 
 </div>
+
+<script>
+document.addEventListener("turbo:load", function () {
+
+  const modal = document.getElementById("deleteModal");
+  const cancelBtn = document.getElementById("cancelDelete");
+  const confirmBtn = document.getElementById("confirmDelete");
+  const deleteForm = document.getElementById("deleteForm");
+  const modalMessage = document.getElementById("modalMessage");
+
+  let currentForm = null;
+
+  /* ---------- Delete Single Task ---------- */
+
+  document.querySelectorAll(".delete-task-btn").forEach(button => {
+
+    button.addEventListener("click", function(e){
+
+      e.preventDefault();
+
+      const taskId = this.dataset.taskId;
+
+      deleteForm.action = "/tasks/" + taskId;
+
+      currentForm = deleteForm;
+
+      modalMessage.innerText =
+        "Are you sure you want to permanently delete this task?";
+
+      modal.style.display = "flex";
+
+    });
+
+  });
+
+  /* ---------- Clear All Tasks ---------- */
+
+  const clearAllForm = document
+    .querySelector(".clear-all-confirm")
+    .closest("form");
+
+  clearAllForm.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    currentForm = clearAllForm;
+
+    modalMessage.innerText =
+      "Are you sure you want to permanently delete ALL tasks?";
+
+    modal.style.display = "flex";
+
+  });
+
+  /* ---------- Cancel ---------- */
+
+  cancelBtn.addEventListener("click", function(){
+
+    modal.style.display = "none";
+
+  });
+
+  /* ---------- Delete Permanently ---------- */
+
+  confirmBtn.addEventListener("click", function(){
+
+    modal.style.display = "none";
+
+    if(currentForm){
+
+      currentForm.submit();
+
+    }
+
+  });
+
+});
+</script>

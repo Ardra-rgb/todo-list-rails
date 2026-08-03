@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root "home#login"
   get "tasks/new"
   post "tasks/create"
 

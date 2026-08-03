@@ -12,6 +12,7 @@ class LoginController < ApplicationController
         render plain: "Invalid Password"
       else
         session[:user_id] = user.id
+        flash[:success] = "You have logged in successfully!"
         redirect_to "/dashboard/index"
       end
     end
